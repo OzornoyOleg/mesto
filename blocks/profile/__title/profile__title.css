@@ -1,0 +1,35 @@
+.profile__title{
+  padding: 0 0 10px;
+  margin: 0;
+  max-width: 294px;
+  height: 39px;
+  color: #fff;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 48px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 984px) {
+  .profile__title {
+    font-size: 20px;
+    max-width: 195px;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .profile__title {
+    height: 39px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 27px;
+    line-height: 33px;
+    padding: 0;
+    margin: 0 auto 0;
+    max-width: 320px;
+  }
+}
