@@ -1,17 +1,13 @@
-# Проект: Место
+# Практическая работа 4-го спринта
 
-### Обзор
+Здесь находится практическая работа 4-го спринта, где мной были применены основные свойства:
 
-* Figma
-* Картинки
+1. Grid Layout
+2. Адаптивная вёрстка с применением медиазапросов
+3. Flexbox
+4. Технология JavaScript
 
-**Figma**
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+Макет в Figma - https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=28212%3A212&t=SxwBwX9GyPosujVA-0
 
-**Картинки**
-
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
-
-Удачи!
+Страница моего проекта на Github Pages - https://ozornoyoleg.github.io/mesto/index.html
