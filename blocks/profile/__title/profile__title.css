@@ -30,6 +30,7 @@
     line-height: 33px;
     padding: 0;
     margin: 0 auto 0;
+    margin-left: 33px;
     max-width: 320px;
   }
 }

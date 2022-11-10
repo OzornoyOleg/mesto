@@ -7,16 +7,16 @@
 }
 
 @media screen and (max-width: 984px) {
-  .header {
+  .profile__info {
     max-width: 585px;
   }
 }
 
 @media screen and (max-width: 568px) {
-  .elements {
-    margin: 42px auto 0;
-    max-width: 320px;
-    display: flex;
-    flex-direction: column;
+  .profile__info {
+      margin: 0 auto 0;
+      max-width: 320px;
+      display: flex;
+      flex-direction: column;
   }
 }

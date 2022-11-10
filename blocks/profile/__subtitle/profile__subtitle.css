@@ -23,7 +23,10 @@
 
 @media screen and (max-width: 568px) {
   .profile__subtitle {
-    margin: 5px 0 0 10px;
-    max-width: 282px;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    margin: 0 auto 0;
+    width: 282px;
   }
 }
