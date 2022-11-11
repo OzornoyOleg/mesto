@@ -14,7 +14,6 @@ function popupOpened() {
   popupDescription.value = profileSubtitle.textContent
 }
 
-
 function popupClosed() {
   popup.classList.remove('popup_active')
 }
@@ -33,7 +32,6 @@ popupClose.addEventListener('click', popupClosed)
 
 popupAddButton.addEventListener('click', popupSaveChanges)
 
-popupAddButton.addEventListener
 
 
 

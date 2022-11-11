@@ -1,6 +1,6 @@
 .popup__input-name {
   margin: 54px auto 0;
-  font-family: 'Inter';
+  font-family: 'Inter', 'Arial', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

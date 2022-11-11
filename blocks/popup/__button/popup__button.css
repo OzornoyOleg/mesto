@@ -1,6 +1,7 @@
 .popup__button {
   margin: 0;
   padding: 0;
+  color: #fff;
   background-color: #000;
   width: 358px;
   height: 50px;
@@ -9,6 +10,11 @@
   border-radius: 2px;
   cursor: pointer;
   transition: opacity 0.5s linear;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
 }
 
 .popup__button:hover {
@@ -20,5 +26,7 @@
     width: 238px;
     height: 46px;
     margin: 45px auto 0;
+    font-size: 17px;
+    line-height: 17px;
   }
 }
