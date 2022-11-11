@@ -1,17 +1,22 @@
-.popup__description {
-  margin: 30px auto 0;
+.popup__input {
+  padding: 0;
+  margin: 29px 0 0;
   font-family: 'Inter', 'Arial', sans-serif;
   font-style: normal;
+  color: #000;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   width: 358px;
   height: 14px;
+  outline: none;
+  border: none;
+  padding-bottom: 12px;
+  border-bottom: rgba(0, 0, 0, 0.2) 1px solid;
 }
 
 @media screen and (max-width: 568px) {
-  .popup__description {
+  .popup__input {
     width: 238px;
-    margin: 25px auto 0;
   }
 }
