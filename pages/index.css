@@ -20,8 +20,6 @@
 
 @import url(../blocks/popup/__line/popup__line.css);
 
-@import url(../blocks/popup/__description/popup__description.css);
-
 @import url(../blocks/popup/__button/popup__button.css);
 
 @import url(../blocks/popup/__close/popup__close.css);
