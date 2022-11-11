@@ -2,7 +2,6 @@
   padding: 0 0 10px;
   margin: 0;
   max-width: 294px;
-  height: 39px;
   color: #fff;
   font-family: 'Inter', 'Arial', sans-serif;
   font-style: normal;
@@ -17,20 +16,17 @@
 @media screen and (max-width: 984px) {
   .profile__title {
     font-size: 20px;
-    max-width: 195px;
+    max-width: 140px;
   }
 }
 
 @media screen and (max-width: 568px) {
   .profile__title {
-    height: 39px;
-    font-family: 'Inter';
-    font-style: normal;
     font-size: 27px;
     line-height: 33px;
     padding: 0;
-    margin: 0 auto 0;
-    margin-left: 33px;
-    max-width: 320px;
+    margin: 0 auto 8px;
+    margin-left: 27px;
+    max-width: 190px;
   }
 }

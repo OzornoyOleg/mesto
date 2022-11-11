@@ -17,7 +17,6 @@
   .profile {
     margin: 42px auto 0;
     max-width: 320px;
-    display: flex;
     flex-direction: column;
   }
 }

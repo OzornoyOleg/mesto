@@ -5,9 +5,73 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
-  <title>Mesto Russia</title>
+  <title>Места России</title>
 </head>
 <body class="page">
+  <header class="header">
+    <img src="./images/header-logo.svg" alt="Логотип" class="header__logo">
+    <img src="./images/header-line.jpg" alt="Линия" class="header__line">
+  </header>
+  <main class="content">
+    <section class="profile">
+      <img class="profile__photo" src="./images/profile-photo.png" alt="Фото профиля">
+      <div class="profile__info">
+        <div class="profile__button-container">
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <button class="profile__edit-button"></button>
+        </div>
+        <p class="profile__subtitle">Исследователь океана</p>
+      </div>
+      <button  class="profile__add-button"></button>
+    </section>
+    <section class="elements">
+        <div class="elements__element">
+          <img src="./images/element-one.jpg" alt="Фото Карачаевска" class="elements__image">
+          <div class="elements__name-container">
+            <h3 class="elements__name">Карачаевск</h3>
+            <button class="elements__like"></button>
+          </div>
+        </div>
+        <div class="elements__element">
+          <img src="./images/element-two.jpg" alt="Фото Горы Эльбрус" class="elements__image">
+          <div class="elements__name-container">
+            <h3 class="elements__name">Гора Эльбрус</h3>
+            <button class="elements__like"></button>
+          </div>
+        </div>
+        <div class="elements__element">
+          <img src="./images/element-three.jpg" alt="Фото Домбая" class="elements__image">
+          <div class="elements__name-container">
+            <h3 class="elements__name">Домбай</h3>
+            <button class="elements__like"></button>
+          </div>
+        </div>
+        <div class="elements__element">
+          <img src="./images/element-four.jpg" alt="Фото Горы Эльбрус" class="elements__image">
+          <div class="elements__name-container">
+            <h3 class="elements__name">Гора Эльбрус</h3>
+            <button class="elements__like"></button>
+          </div>
+        </div>
+        <div class="elements__element">
+          <img src="./images/element-five.jpg" alt="Фото Домбая" class="elements__image">
+          <div class="elements__name-container">
+            <h3 class="elements__name">Домбай</h3>
+            <button class="elements__like"></button>
+          </div>
+        </div>
+        <div class="elements__element">
+          <img src="./images/element-six.jpg" alt="Фото Карачаево-Черкесии" class="elements__image">
+          <div class="elements__name-container">
+            <h3 class="elements__name">Карачаево-Черкесия</h3>
+            <button class="elements__like"></button>
+          </div>
+        </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__text">© 2020 Mesto Russia</p>
+  </footer>
   <div class="popup">
     <div class="popup__container">
       <p class="popup__title">Редактировать профиль</p>
@@ -19,70 +83,6 @@
       <button class="popup__close"></button>
     </div>
   </div> 
-  <header class="header">
-    <img src="./images/header-logo.svg" alt="Логотип" class="header__logo">
-    <img src="./images/header-line.jpg" alt="Линия" class="header__line">
-  </header>
-  <main class="content">
-    <section class="profile">
-      <img class="profile__photo" src="./images/profile-photo.png" alt="Фото профиля">
-      <div class="profile__info">
-        <div class="profile__button-container">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button"><img class="profile__edit-image" src="./images/profile-edit-button.svg" alt="Кнопка изменения"></button>
-        </div>
-        <p class="profile__subtitle">Исследователь океана</p>
-      </div>
-      <button  class="profile__add-button"></button>
-    </section>
-    <section class="elements">
-        <div class="elements__element">
-          <img src="./images/element-one.jpg" alt="Фото Карачаевска" class="elements__image">
-          <div class="elements__name-container">
-            <p class="elements__name">Карачаевск</p>
-            <button class="elements__like"></button>
-          </div>
-        </div>
-        <div class="elements__element">
-          <img src="./images/element-two.jpg" alt="Фото Горы Эльбрус" class="elements__image">
-          <div class="elements__name-container">
-            <p class="elements__name">Гора Эльбрус</p>
-            <button class="elements__like"></button>
-          </div>
-        </div>
-        <div class="elements__element">
-          <img src="./images/element-three.jpg" alt="Фото Домбая" class="elements__image">
-          <div class="elements__name-container">
-            <p class="elements__name">Домбай</p>
-            <button class="elements__like"></button>
-          </div>
-        </div>
-        <div class="elements__element">
-          <img src="./images/element-four.jpg" alt="Фото Горы Эльбрус" class="elements__image">
-          <div class="elements__name-container">
-            <p class="elements__name">Гора Эльбрус</p>
-            <button class="elements__like"></button>
-          </div>
-        </div>
-        <div class="elements__element">
-          <img src="./images/element-five.jpg" alt="Фото Домбая" class="elements__image">
-          <div class="elements__name-container">
-            <p class="elements__name">Домбай</p>
-            <button class="elements__like"></button>
-          </div>
-        </div>
-        <div class="elements__element">
-          <img src="./images/element-six.jpg" alt="Фото Карачаево-Черкесии" class="elements__image">
-          <div class="elements__name-container">
-            <p class="elements__name">Карачаево-Черкесия</p>
-            <button class="elements__like"></button>
-          </div>
-        </div>
-    </section>
-  </main>
-  <footer class="footer">
-    <p class="footer__text">© 2020 Mesto Russia</p>
-  </footer>
   <script src="./scripts/index.js"></script>
 </body>
 </html>

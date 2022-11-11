@@ -1,6 +1,5 @@
 .profile__subtitle {
   margin: 6px 0 0;
-  height: 18px;
   padding: 0 0 5px;
   color: #fff;
   width: 100%;
@@ -27,6 +26,6 @@
     line-height: 17px;
     text-align: center;
     margin: 0 auto 0;
-    width: 282px;
+    max-width: 282px;
   }
 }
