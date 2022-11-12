@@ -1,12 +1,12 @@
 let popup = document.querySelector('.popup')
-let popupInputName = popup.querySelector('.popup__input_name')
-let popupDescription = popup.querySelector('.popup__input_description')
+let popupInputName = popup.querySelector('.popup__input_type_name')
+let popupDescription = popup.querySelector('.popup__input_type_description')
 let popupClose = popup.querySelector('.popup__close')
 let profile = document.querySelector('.profile')
 let profileTitle = profile.querySelector('.profile__title')
 let profileSubtitle = profile.querySelector('.profile__subtitle')
 let profileEdit = profile.querySelector('.profile__edit-button')
-let formElement = document.querySelector('.popup__container')
+let formElement = document.querySelector('.popup__form')
 
 function popupOpened() {
   popup.classList.add('popup_active')

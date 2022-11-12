@@ -10,8 +10,8 @@
 
 @media screen and (max-width: 984px) {
   .elements {
-    max-width: 585px;
-    grid-template-columns: repeat(2, minmax(282px, 1fr));
+    max-width: 552px;
+    grid-template-columns: repeat(2, minmax(266px, 1fr));
   }
 }
 
