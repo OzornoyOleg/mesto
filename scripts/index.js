@@ -20,7 +20,7 @@ function popupClosed() {
 
 
 function formSubmitHandler (evt) {
-  evt.preventDefault();
+  evt.preventDefault()
   profileTitle.textContent = popupInputName.value
   profileSubtitle.textContent = popupDescription.value
   popupClosed()
