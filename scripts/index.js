@@ -1,12 +1,12 @@
 let popup = document.querySelector('.popup')
-let popupInputName = popup.querySelector('.popup__input-name')
-let popupDescription = popup.querySelector('.popup__description')
+let popupInputName = popup.querySelector('.popup__input_name')
+let popupDescription = popup.querySelector('.popup__input_description')
 let popupClose = popup.querySelector('.popup__close')
-let popupAddButton = popup.querySelector('.popup__button')
 let profile = document.querySelector('.profile')
 let profileTitle = profile.querySelector('.profile__title')
 let profileSubtitle = profile.querySelector('.profile__subtitle')
 let profileEdit = profile.querySelector('.profile__edit-button')
+let formElement = document.querySelector('.popup__container')
 
 function popupOpened() {
   popup.classList.add('popup_active')
@@ -18,7 +18,9 @@ function popupClosed() {
   popup.classList.remove('popup_active')
 }
 
-function popupSaveChanges() {
+
+function formSubmitHandler (evt) {
+  evt.preventDefault();
   profileTitle.textContent = popupInputName.value
   profileSubtitle.textContent = popupDescription.value
   popupClosed()
@@ -30,7 +32,7 @@ profileEdit.addEventListener('click', popupOpened)
 
 popupClose.addEventListener('click', popupClosed)
 
-popupAddButton.addEventListener('click', popupSaveChanges)
+formElement.addEventListener('submit', formSubmitHandler)
 
 
 

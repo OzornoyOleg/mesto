@@ -1,7 +1,7 @@
 .profile__edit-button {
   background-color: rgba(0, 0, 0, 0);
   padding: 0;
-  margin: 15px 0 0 18px;
+  margin: 18px 0 0 18px;
   cursor: pointer;
   background: url(../../../images/profile-edit-button.svg);
   border: none;
