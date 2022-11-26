@@ -63,15 +63,15 @@ function createElements (item) {
   gridElement.querySelector('.elements__like').addEventListener('click', function (event) {
     event.target.classList.toggle('elements__like_active')
   })
+  gridElement.querySelector('.elements__image').addEventListener('click', function () {
+    popupImageView.classList.add('popup_active')
+    popupImage.src = item.link
+    popupImageTitle.textContent = item.name
+  })
   const deleteButton = gridElement.querySelector('.elements__trash')
   deleteButton.addEventListener('click', function() {
     const gridItem = deleteButton.closest('.elements__element');
     gridItem.remove();
-  })
-  gridElement.addEventListener('click', function () {
-  popupImageView.classList.add('popup_active')
-  popupImage.src = item.link
-  popupImageTitle.textContent = item.name
   })
   return gridElement
 }
