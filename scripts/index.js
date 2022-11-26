@@ -1,51 +1,32 @@
-let popupAdd = document.querySelector('.popup_type_add')
-let popupInputName = document.querySelector('.popup__input_type_name')
-let popupDescription = document.querySelector('.popup__input_type_description')
-let popupClose = document.querySelectorAll('.popup__close')
-let profile = document.querySelector('.profile')
-let profileTitle = profile.querySelector('.profile__title')
-let profileSubtitle = profile.querySelector('.profile__subtitle')
-let profileEdit = profile.querySelector('.profile__edit-button')
-let addImage = profile.querySelector('.profile__add-button')
-let popupEdit = document.querySelector('.popup_type_edit')
-let formElementEdit = popupEdit.querySelector('.popup__form_type_edit')
-let formElementAdd = document.querySelector('.popup__form_type_add')
-let gridTemplate = document.querySelector('.grid-element').content.querySelector('.elements__element')
-let gridElements = document.querySelector('.elements')
-let popupCloseBt = popupAdd.querySelector('.popup__close')
-let popupImage = document.querySelector('.popup__image')
-let popupImageTitle = document.querySelector('.popup__image-title')
-let popupImageView = document.querySelector('.popup_type_image')
-
-let initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
-
+const popupAdd = document.querySelector('.popup_type_add')
+const popupInputName = document.querySelector('.popup__input_type_name')
+const popupDescription = document.querySelector('.popup__input_type_description')
+const popupClose = document.querySelectorAll('.popup__close')
+const profile = document.querySelector('.profile')
+const profileTitle = profile.querySelector('.profile__title')
+const profileSubtitle = profile.querySelector('.profile__subtitle')
+const profileEdit = profile.querySelector('.profile__edit-button')
+const imageAddPopup = profile.querySelector('.profile__add-button')
+const popupEdit = document.querySelector('.popup_type_edit')
+const formElementEdit = popupEdit.querySelector('.popup__form_type_edit')
+const formElementAdd = document.querySelector('.popup__form_type_add')
+const gridTemplate = document.querySelector('.grid-element').content.querySelector('.elements__element')
+const gridElements = document.querySelector('.elements')
+const popupCloseBt = popupAdd.querySelector('.popup__close')
+const popupImage = document.querySelector('.popup__image')
+const popupImageTitle = document.querySelector('.popup__image-title')
+const popupImageView = document.querySelector('.popup_type_image')
+const popupInputAddName = document.querySelector('.popup__input_type_card-name')
+const popupAddDescription = document.querySelector('.popup__input_type_card-description')
 const popupEls = document.querySelectorAll('.popup')
+
+function openPopup (popup) {  
+  popup.classList.add('popup_active')
+}
+
+function closePopup (popup) {
+  popup.classList.remove('popup_active')
+}
 
 popupEls.forEach( function(popupEl) {
   const popupCloseBtnEl = popupEl.querySelector('.popup__close');
@@ -54,18 +35,23 @@ popupEls.forEach( function(popupEl) {
   })
 })
 
-
-
 function createElements (item) {
   const gridElement = gridTemplate.cloneNode(true)
   gridElement.querySelector('.elements__name').textContent = item.name
   gridElement.querySelector('.elements__image').src = item.link
+  gridElement.querySelector('.elements__image').alt = item.name
   gridElement.querySelector('.elements__like').addEventListener('click', function (event) {
     event.target.classList.toggle('elements__like_active')
   })
-  gridElement.querySelector('.elements__image').addEventListener('click', function () {
+  const gridImageElement = gridElement.querySelector('.elements__image')
+  gridImageElement.addEventListener('click', function () {
     popupImageView.classList.add('popup_active')
+    let popupImageClose = popupImageView.querySelector('.popup__close')
+    popupImageClose.addEventListener('click', function() {
+      closePopup(popupImageView)
+    })
     popupImage.src = item.link
+    popupImage.alt = item.name
     popupImageTitle.textContent = item.name
   })
   const deleteButton = gridElement.querySelector('.elements__trash')
@@ -81,84 +67,36 @@ initialCards.forEach(function(item) {
   gridElements.append(element)
 })
 
-const addElement = function (e) {
+const submitAddFormHandler = function (e) {
   e.preventDefault()
-  const popupInputName = document.querySelector('.popup__input_type_card-name')
-  const popupDescription = document.querySelector('.popup__input_type_card-description')
   const newElement = {
-    name: popupInputName.value,
-    link: popupDescription.value
+    name: popupInputAddName.value,
+    link: popupAddDescription.value
   }
   const element = createElements(newElement)
   gridElements.prepend(element)
-  popupEls.forEach (function (popupEl){
-    popupEl.classList.remove('popup_active')
-  })
-
+  closePopup(popupAdd)
 }
 
-formElementAdd.addEventListener('submit', addElement)
+formElementAdd.addEventListener('submit', submitAddFormHandler)
 
-formElementEdit.addEventListener('submit', formSubmitHandler)
+formElementEdit.addEventListener('submit', submitEditFormHandler)
 
+imageAddPopup.addEventListener('click', function (){
+  popupAddDescription.value = ''
+  popupInputAddName.value = ''
+  openPopup(popupAdd)
+})
 
-function openPopupEdit() {
-  popupEdit.classList.add('popup_active')
+profileEdit.addEventListener('click', function (){
+  openPopup(popupEdit)
   popupInputName.value = profileTitle.textContent
   popupDescription.value = profileSubtitle.textContent
-}
+})
 
-profileEdit.addEventListener('click', openPopupEdit)
-
-function openPopupAdd() {
-  popupAdd.classList.add('popup_active')
-}
-
-addImage.addEventListener('click', openPopupAdd)
-
-function formSubmitHandler (evt) {
+function submitEditFormHandler (evt) {
   evt.preventDefault()
   profileTitle.textContent = popupInputName.value
   profileSubtitle.textContent = popupDescription.value
-  popupEls.forEach (function (popupEl){
-    popupEl.classList.remove('popup_active')
-  })
+  closePopup(popupEdit)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
