@@ -1,24 +1,24 @@
-const popupAdd = document.querySelector('.popup_type_add')
+const popupAddCard = document.querySelector('.popup_type_add')
 const popupInputName = document.querySelector('.popup__input_type_name')
 const popupDescription = document.querySelector('.popup__input_type_description')
-const popupClose = document.querySelectorAll('.popup__close')
+const buttonsClosePopup = document.querySelectorAll('.popup__close')
 const profile = document.querySelector('.profile')
 const profileTitle = profile.querySelector('.profile__title')
 const profileSubtitle = profile.querySelector('.profile__subtitle')
 const profileEdit = profile.querySelector('.profile__edit-button')
 const imageAddPopup = profile.querySelector('.profile__add-button')
-const popupEdit = document.querySelector('.popup_type_edit')
-const formElementEdit = popupEdit.querySelector('.popup__form_type_edit')
+const popupEditProfile = document.querySelector('.popup_type_edit')
+const formElementEdit = popupEditProfile.querySelector('.popup__form_type_edit')
 const formElementAdd = document.querySelector('.popup__form_type_add')
 const gridTemplate = document.querySelector('.grid-element').content.querySelector('.elements__element')
 const gridElements = document.querySelector('.elements')
-const popupCloseBt = popupAdd.querySelector('.popup__close')
 const popupImage = document.querySelector('.popup__image')
 const popupImageTitle = document.querySelector('.popup__image-title')
 const popupImageView = document.querySelector('.popup_type_image')
 const popupInputAddName = document.querySelector('.popup__input_type_card-name')
 const popupAddDescription = document.querySelector('.popup__input_type_card-description')
 const popupEls = document.querySelectorAll('.popup')
+const popupImageClose = popupImageView.querySelector('.popup__close')
 
 function openPopup (popup) {  
   popup.classList.add('popup_active')
@@ -31,25 +31,24 @@ function closePopup (popup) {
 popupEls.forEach( function(popupEl) {
   const popupCloseBtnEl = popupEl.querySelector('.popup__close');
   popupCloseBtnEl.addEventListener('click', function() {
-    popupEl.classList.remove('popup_active')
+    closePopup(popupEl)
   })
 })
 
 function createElements (item) {
   const gridElement = gridTemplate.cloneNode(true)
-  gridElement.querySelector('.elements__name').textContent = item.name
-  gridElement.querySelector('.elements__image').src = item.link
-  gridElement.querySelector('.elements__image').alt = item.name
+  const gridElementName = gridElement.querySelector('.elements__name')
+  const gridElementImage = gridElement.querySelector('.elements__image')
+  const gridElementAlt = gridElement.querySelector('.elements__image')
+  gridElementName.textContent = item.name
+  gridElementImage.src = item.link
+  gridElementAlt.alt = item.name
   gridElement.querySelector('.elements__like').addEventListener('click', function (event) {
     event.target.classList.toggle('elements__like_active')
   })
   const gridImageElement = gridElement.querySelector('.elements__image')
   gridImageElement.addEventListener('click', function () {
-    popupImageView.classList.add('popup_active')
-    let popupImageClose = popupImageView.querySelector('.popup__close')
-    popupImageClose.addEventListener('click', function() {
-      closePopup(popupImageView)
-    })
+    openPopup(popupImageView)
     popupImage.src = item.link
     popupImage.alt = item.name
     popupImageTitle.textContent = item.name
@@ -61,6 +60,10 @@ function createElements (item) {
   })
   return gridElement
 }
+
+popupImageClose.addEventListener('click', function() {
+  closePopup(popupImageView)
+})
 
 initialCards.forEach(function(item) {
   const element = createElements(item)
@@ -75,7 +78,7 @@ const submitAddFormHandler = function (e) {
   }
   const element = createElements(newElement)
   gridElements.prepend(element)
-  closePopup(popupAdd)
+  closePopup(popupAddCard)
 }
 
 formElementAdd.addEventListener('submit', submitAddFormHandler)
@@ -83,13 +86,12 @@ formElementAdd.addEventListener('submit', submitAddFormHandler)
 formElementEdit.addEventListener('submit', submitEditFormHandler)
 
 imageAddPopup.addEventListener('click', function (){
-  popupAddDescription.value = ''
-  popupInputAddName.value = ''
-  openPopup(popupAdd)
+  formElementAdd.reset()
+  openPopup(popupAddCard)
 })
 
 profileEdit.addEventListener('click', function (){
-  openPopup(popupEdit)
+  openPopup(popupEditProfile)
   popupInputName.value = profileTitle.textContent
   popupDescription.value = profileSubtitle.textContent
 })
@@ -98,5 +100,5 @@ function submitEditFormHandler (evt) {
   evt.preventDefault()
   profileTitle.textContent = popupInputName.value
   profileSubtitle.textContent = popupDescription.value
-  closePopup(popupEdit)
+  closePopup(popupEditProfile)
 }
