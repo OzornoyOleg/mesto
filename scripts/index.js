@@ -33,6 +33,18 @@ popupEls.forEach( function(popupEl) {
   popupCloseBtnEl.addEventListener('click', function() {
     closePopup(popupEl)
   })
+  popupEl.addEventListener('click', function (evt) {
+    if (evt.target === popupEl) {
+      closePopup(popupEl)
+    }
+  })
+})
+
+document.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Escape') {
+    const modalToClose = document.querySelector('.popup_active')
+    closePopup(modalToClose)
+  }
 })
 
 function createElements (item) {
@@ -43,9 +55,6 @@ function createElements (item) {
   gridElementName.textContent = item.name
   gridElementImage.src = item.link
   gridElementAlt.alt = item.name
-  gridElement.querySelector('.elements__like').addEventListener('click', function (event) {
-    event.target.classList.toggle('elements__like_active')
-  })
   const gridImageElement = gridElement.querySelector('.elements__image')
   gridImageElement.addEventListener('click', function () {
     openPopup(popupImageView)
@@ -60,6 +69,12 @@ function createElements (item) {
   })
   return gridElement
 }
+
+gridElements.addEventListener('click', function (evt) {
+  if (evt.target.classList.contains('elements__like')) {
+    evt.target.classList.toggle('elements__like_active');
+    }
+})
 
 popupImageClose.addEventListener('click', function() {
   closePopup(popupImageView)
