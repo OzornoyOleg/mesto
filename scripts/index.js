@@ -19,13 +19,23 @@ const popupInputAddName = document.querySelector('.popup__input_type_card-name')
 const popupAddDescription = document.querySelector('.popup__input_type_card-description')
 const popupEls = document.querySelectorAll('.popup')
 const popupImageClose = popupImageView.querySelector('.popup__close')
+const escButton = 'Escape'
+
+function closeByEsc(evt) {
+  if (evt.key === escButton) {
+    const openedPopup = document.querySelector('.popup_active');
+    closePopup(openedPopup); 
+  }
+}
 
 function openPopup (popup) {  
   popup.classList.add('popup_active')
+  document.addEventListener('keydown',  closeByEsc)
 }
 
 function closePopup (popup) {
   popup.classList.remove('popup_active')
+  document.removeEventListener('keydown',  closeByEsc)
 }
 
 popupEls.forEach( function(popupEl) {
@@ -33,30 +43,21 @@ popupEls.forEach( function(popupEl) {
   popupCloseBtnEl.addEventListener('click', function() {
     closePopup(popupEl)
   })
-  popupEl.addEventListener('click', function (evt) {
+  popupEl.addEventListener('mousedown', function (evt) {
     if (evt.target === popupEl) {
       closePopup(popupEl)
     }
   })
 })
 
-document.addEventListener('keydown', function (evt) {
-  if (evt.key === 'Escape') {
-    const modalToClose = document.querySelector('.popup_active')
-    closePopup(modalToClose)
-  }
-})
-
-function createElements (item) {
+function createCard (item) {
   const gridElement = gridTemplate.cloneNode(true)
   const gridElementName = gridElement.querySelector('.elements__name')
   const gridElementImage = gridElement.querySelector('.elements__image')
-  const gridElementAlt = gridElement.querySelector('.elements__image')
   gridElementName.textContent = item.name
   gridElementImage.src = item.link
-  gridElementAlt.alt = item.name
-  const gridImageElement = gridElement.querySelector('.elements__image')
-  gridImageElement.addEventListener('click', function () {
+  gridElementImage.alt = item.name
+  gridElementImage.addEventListener('click', function () {
     openPopup(popupImageView)
     popupImage.src = item.link
     popupImage.alt = item.name
@@ -81,7 +82,7 @@ popupImageClose.addEventListener('click', function() {
 })
 
 initialCards.forEach(function(item) {
-  const element = createElements(item)
+  const element = createCard(item)
   gridElements.append(element)
 })
 
@@ -91,7 +92,7 @@ const submitAddFormHandler = function (e) {
     name: popupInputAddName.value,
     link: popupAddDescription.value
   }
-  const element = createElements(newElement)
+  const element = createCard(newElement)
   gridElements.prepend(element)
   closePopup(popupAddCard)
 }

@@ -38,15 +38,14 @@ const setEventListeners = (formElement, config) => {
     inputElement.addEventListener('input', function () {
       toggleButtonState(inputList, buttonElement, config)
       checkInputValidity(formElement, inputElement, config);
-      formElement.addEventListener('reset', function() {
-        setTimeout(() => {
-          toggleButtonState(inputList, buttonElement, config)
-        }, 0)
-      })
     });
   });
+  formElement.addEventListener('reset', function() {
+    setTimeout(() => {
+      toggleButtonState(inputList, buttonElement, config)
+    }, 0)
+  })
 };
-
 
 function toggleButtonState (inputList, buttonElement, config) {
    if (hasInvalidInput(inputList)) {
@@ -64,7 +63,6 @@ function hasInvalidInput (inputList) {
   })
 }
 
-
 enableValidation({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -73,4 +71,3 @@ enableValidation({
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
 }); 
-
