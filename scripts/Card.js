@@ -6,13 +6,11 @@ export class Card {
   }
 
   _getTemplate () {
-    const cardElement = document
+    return document
     .querySelector(this._templateSelector)
     .content
     .querySelector('.elements__element')
     .cloneNode(true)
-
-    return cardElement
   }
 
   generateCard() {
@@ -28,11 +26,28 @@ export class Card {
     document.querySelector('.popup__image').src = this._image
     document.querySelector('.popup__image-title').textContent = this._name
     document.querySelector('.popup_type_image').classList.add('popup_active')
+    document.addEventListener('keydown', this._closeByEsc)
+  }
+
+  _closeByEsc(evt) {
+    if (evt.key === 'Escape') {
+      const openedPopup = document.querySelector('.popup_active')
+      openedPopup.classList.remove('popup_active') 
+      document.removeEventListener('keydown', this._closeByEsc)
+    }
   }
 
   _setEventListeners () {
     this._element.querySelector('.elements__image').addEventListener('click', () => {
       this._handleOpenPopup()
-    }) 
+    })
+    this._likeElement = this._element.querySelector('.elements__like')
+    this._likeElement.addEventListener('click', () => {
+      this._likeElement.classList.toggle('elements__like_active')
+    })
+    this._trashElement = this._element.querySelector('.elements__trash')
+    this._trashElement.addEventListener('click', () => {
+      this._element.closest('.elements__element').remove()
+    })
   }
 }

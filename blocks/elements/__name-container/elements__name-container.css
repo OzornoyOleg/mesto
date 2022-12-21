@@ -6,3 +6,15 @@
   justify-content: space-between;
   margin: 25px 0 25px 21px;
 }
+
+@media screen and (max-width: 984px) {
+  .elements__name-container {
+    margin: 25px 0 25px 10px;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .elements__name-container {
+    margin: 25px 0 25px 21px;
+  }
+}
