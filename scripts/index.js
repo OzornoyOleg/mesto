@@ -1,7 +1,9 @@
+import { Card } from "./Card.js"
+import { FormValidator } from "./FormValidator.js"
+
 const popupAddCard = document.querySelector('.popup_type_add')
 const popupInputName = document.querySelector('.popup__input_type_name')
 const popupDescription = document.querySelector('.popup__input_type_description')
-const buttonsClosePopup = document.querySelectorAll('.popup__close')
 const profile = document.querySelector('.profile')
 const profileTitle = profile.querySelector('.profile__title')
 const profileSubtitle = profile.querySelector('.profile__subtitle')
@@ -10,16 +12,62 @@ const imageAddPopup = profile.querySelector('.profile__add-button')
 const popupEditProfile = document.querySelector('.popup_type_edit')
 const formElementEdit = popupEditProfile.querySelector('.popup__form_type_edit')
 const formElementAdd = document.querySelector('.popup__form_type_add')
-const gridTemplate = document.querySelector('.grid-element').content.querySelector('.elements__element')
+const profileEditForm = document.querySelector('.popup__form_type_edit')
+const cardAddForm = document.querySelector('.popup__form_type_add')
 const gridElements = document.querySelector('.elements')
-const popupImage = document.querySelector('.popup__image')
-const popupImageTitle = document.querySelector('.popup__image-title')
-const popupImageView = document.querySelector('.popup_type_image')
 const popupInputAddName = document.querySelector('.popup__input_type_card-name')
 const popupAddDescription = document.querySelector('.popup__input_type_card-description')
 const popupEls = document.querySelectorAll('.popup')
-const popupImageClose = popupImageView.querySelector('.popup__close')
 const escButton = 'Escape'
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}
+
+const profileEditValidator = new FormValidator (config, profileEditForm)
+const cardAddValidator = new FormValidator (config, cardAddForm)
+
+cardAddValidator.enableValidation()
+profileEditValidator.enableValidation()
+
+
+initialCards.forEach((item) => {
+  const card = new Card(item, '.grid-element')
+  const cardElement = card.generateCard()
+  gridElements.append(cardElement)
+})
 
 function closeByEsc(evt) {
   if (evt.key === escButton) {
@@ -50,40 +98,17 @@ popupEls.forEach( function(popupEl) {
   })
 })
 
-function createCard (item) {
-  const gridElement = gridTemplate.cloneNode(true)
-  const gridElementName = gridElement.querySelector('.elements__name')
-  const gridElementImage = gridElement.querySelector('.elements__image')
-  gridElementName.textContent = item.name
-  gridElementImage.src = item.link
-  gridElementImage.alt = item.name
-  gridElementImage.addEventListener('click', function () {
-    openPopup(popupImageView)
-    popupImage.src = item.link
-    popupImage.alt = item.name
-    popupImageTitle.textContent = item.name
-  })
-  const deleteButton = gridElement.querySelector('.elements__trash')
-  deleteButton.addEventListener('click', function() {
-    const gridItem = deleteButton.closest('.elements__element');
-    gridItem.remove();
-  })
-  return gridElement
-}
+gridElements.addEventListener('click', function (evt) {
+  if (evt.target.classList.contains('elements__trash')) {
+    const gridItem = evt.target.closest('.elements__element');
+      gridItem.remove();
+    }
+})
 
 gridElements.addEventListener('click', function (evt) {
   if (evt.target.classList.contains('elements__like')) {
     evt.target.classList.toggle('elements__like_active');
     }
-})
-
-popupImageClose.addEventListener('click', function() {
-  closePopup(popupImageView)
-})
-
-initialCards.forEach(function(item) {
-  const element = createCard(item)
-  gridElements.append(element)
 })
 
 const submitAddFormHandler = function (e) {
@@ -92,8 +117,9 @@ const submitAddFormHandler = function (e) {
     name: popupInputAddName.value,
     link: popupAddDescription.value
   }
-  const element = createCard(newElement)
-  gridElements.prepend(element)
+  const card = new Card(newElement, '.grid-element')
+  const cardElement = card.generateCard()
+  gridElements.prepend(cardElement)
   closePopup(popupAddCard)
 }
 
@@ -118,3 +144,6 @@ function submitEditFormHandler (evt) {
   profileSubtitle.textContent = popupDescription.value
   closePopup(popupEditProfile)
 }
+
+
+
