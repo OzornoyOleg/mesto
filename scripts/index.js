@@ -18,7 +18,9 @@ const cardAddForm = document.querySelector('.popup__form_type_add')
 const gridElements = document.querySelector('.elements')
 const popupInputAddName = document.querySelector('.popup__input_type_card-name')
 const popupAddDescription = document.querySelector('.popup__input_type_card-description')
-const popupEls = document.querySelectorAll('.popup')
+const popupImageView = document.querySelector('.popup_type_image')
+const popupImageElement = document.querySelector('.popup__image')
+const popupImageDescription = document.querySelector('.popup__image-title')
 const escButton = 'Escape'
 
 const config = {
@@ -37,12 +39,19 @@ cardAddValidator.enableValidation()
 profileEditValidator.enableValidation()
 
 
-function createCardFromClass (data, template) {
-  return new Card(data, template).generateCard() 
+function createCardFromClass (data, template, handleImageClick) {
+  return new Card(data, template, handleImageClick).generateCard() 
+}
+
+function handleImageClick (name, image)  {
+  popupImageElement.src = image
+  popupImageElement.alt = name
+  popupImageDescription.textContent = name
+  openPopup(popupImageView)
 }
 
 initialCards.forEach((item) => {
-  gridElements.append(createCardFromClass(item, '.grid-element'))
+  gridElements.append(createCardFromClass(item, '.grid-element', handleImageClick))
 })
 
 function closeByEsc(evt) {
@@ -78,7 +87,7 @@ const submitAddFormHandler = function (e) {
     name: popupInputAddName.value,
     link: popupAddDescription.value
   }
-  const cardElement = createCardFromClass(newElement, '.grid-element')
+  const cardElement = createCardFromClass(newElement, '.grid-element', handleImageClick)
   gridElements.prepend(cardElement)
   closePopup(popupAddCard)
 }
@@ -104,6 +113,3 @@ function submitEditFormHandler (evt) {
   profileSubtitle.textContent = popupDescription.value
   closePopup(popupEditProfile)
 }
-
-
-

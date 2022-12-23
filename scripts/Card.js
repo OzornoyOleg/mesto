@@ -1,8 +1,9 @@
 export class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, handleImageClick) {
     this._name = data.name
     this._image = data.link
     this._templateSelector = templateSelector
+    this._handleImageClick = handleImageClick
   }
 
   _getTemplate () {
@@ -22,24 +23,9 @@ export class Card {
     return this._element
   }
 
-  _handleOpenPopup () {
-    document.querySelector('.popup__image').src = this._image
-    document.querySelector('.popup__image-title').textContent = this._name
-    document.querySelector('.popup_type_image').classList.add('popup_active')
-    document.addEventListener('keydown', this._closeByEsc)
-  }
-
-  _closeByEsc(evt) {
-    if (evt.key === 'Escape') {
-      const openedPopup = document.querySelector('.popup_active')
-      openedPopup.classList.remove('popup_active') 
-      document.removeEventListener('keydown', this._closeByEsc)
-    }
-  }
-
   _setEventListeners () {
     this._element.querySelector('.elements__image').addEventListener('click', () => {
-      this._handleOpenPopup()
+      this._handleImageClick(this._name, this._image)
     })
     this._likeElement = this._element.querySelector('.elements__like')
     this._likeElement.addEventListener('click', () => {
